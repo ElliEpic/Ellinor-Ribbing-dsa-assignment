@@ -31,8 +31,9 @@ namespace FrontierDispatch.Core
         public void Enqueue(T item, int priority)
         {
             // TODO: insert the new entry and restore the min-heap invariant.
-            throw new NotImplementedException();
-        }
+          _heap.Add (new Entry(item, priority));
+          SiftUp(_heap.Count - 1);
+          }
 
         /// <summary>
         /// Returns the minimum-priority item without removing it.
@@ -40,7 +41,7 @@ namespace FrontierDispatch.Core
         /// <exception cref="InvalidOperationException">
         /// Thrown when the queue is empty.
         /// </exception>
-        public T Peek()
+        public T Peek() 
         {
             // TODO: return the current minimum without changing the queue.
             throw new NotImplementedException();
@@ -52,15 +53,65 @@ namespace FrontierDispatch.Core
         /// <exception cref="InvalidOperationException">
         /// Thrown when the queue is empty.
         /// </exception>
-        public T Dequeue()
-        {
-            // TODO: remove the minimum item and restore the min-heap invariant.
+        public T Dequeue(){
+            //TODO: remove the minimum item and restore the min-heap invariant.
+            
             throw new NotImplementedException();
         }
 
         /// <summary>
         /// Stores one item together with the priority used by the heap.
         /// </summary>
+        ///
+
+        public void SiftUp(int index) // 
+        {
+            while (true)
+            {
+                int parent = GetParent(index);
+
+                if (_heap[parent].Priority <= _heap[index].Priority) //
+                {
+                    return;
+                    
+                }
+                
+                SwapIndex(index, parent);
+                index = parent;
+            }
+            
+        }
+         
+        public void SiftDown(int index)
+        {
+            while (true)
+            {
+                int LeftChild 
+            }
+        }
+
+        public int GetParent(int index) //
+        {
+            return (index - 1) /  2;
+        }
+
+        public int GetLeftChild(int index) // 
+        {
+            return 2 * index + 1;
+        }
+
+        public int GetRightChild(int index) //
+        {
+            return 2 * index + 2;
+        }
+
+        public void SwapIndex(int a, int b) //
+        {
+            Entry temp = _heap[a] ;
+            _heap[a] = _heap[b];
+            _heap[b] = temp;
+        }
+        
         private readonly struct Entry
         {
             public Entry(T item, int priority)
