@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace FrontierDispatch.Core
 {
@@ -44,7 +45,12 @@ namespace FrontierDispatch.Core
         public T Peek() 
         {
             // TODO: return the current minimum without changing the queue.
-            throw new NotImplementedException();
+            if (_heap.Count == 0)
+            {
+                throw new InvalidOperationException("Queue is fkn empty");
+            }
+
+            return _heap[0].Item; 
         }
 
         /// <summary>
@@ -86,7 +92,20 @@ namespace FrontierDispatch.Core
         {
             while (true)
             {
-                int LeftChild 
+                int leftChild = GetLeftChild(index);
+                int rightChild = GetRightChild(index);
+
+                if (leftChild >= _heap.Count) //If left child is higher than the last index of the hierarchy
+                {
+                    return; 
+                }
+                
+                
+
+                if(rightChild < _heap.Count && _heap[rightChild].Priority < _heap[leftChild].Priority)
+                {
+                    
+                }
             }
         }
 
