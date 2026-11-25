@@ -86,7 +86,7 @@ namespace FrontierDispatch.Core
         {
             while (true)
             {
-                int LeftChild 
+                
             }
         }
 
