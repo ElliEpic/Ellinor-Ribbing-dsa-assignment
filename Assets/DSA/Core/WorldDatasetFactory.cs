@@ -27,6 +27,8 @@ namespace FrontierDispatch.Core
         /// Creates a 200 x 200 grid world for larger scaling experiments.
         /// </summary>
         public static WorldData CreateLarge() => CreateGrid(200, 200);
+        
+        public static WorldData CreateUltraLarge() => CreateGrid(20000, 20000);
 
         /// <summary>
         /// Creates a rectangular grid of locations.

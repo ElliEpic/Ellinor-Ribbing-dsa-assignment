@@ -22,35 +22,18 @@ namespace FrontierDispatch.Core
         public WorldQueries(WorldData world)
         {
             _world = world ?? throw new ArgumentNullException(nameof(world));
+            
+
         }
 
         public Location? FindLocationById(int id)
         {
-            for (int i = 0; i < _world.Locations.Count; ++i)
-            {
-                Location location = _world.Locations[i];
-                if (location.Id == id)
-                {
-                    return location;
-                }
-            }
-
-            return null;
+            return _world.FindLocationById(id);
         }
 
         public IReadOnlyList<Connection> FindOutgoingConnections(int fromLocationId)
         {
-            var result = new List<Connection>();
-            for (int i = 0; i < _world.Connections.Count; ++i)
-            {
-                Connection connection = _world.Connections[i];
-                if (connection.FromLocationId == fromLocationId)
-                {
-                    result.Add(connection);
-                }
-            }
-
-            return result;
+            return _world.FindOutgoingConnections(fromLocationId);
         }
     }
 }

@@ -61,8 +61,13 @@ namespace FrontierDispatch.Core
         /// </exception>
         public T Dequeue(){
             //TODO: remove the minimum item and restore the min-heap invariant.
+
+            var returnValue = _heap[0].Item;
+
+            _heap[0] = _heap[_heap.Count-1];
             
-            throw new NotImplementedException();
+            
+            return returnValue;
         }
 
         /// <summary>
@@ -94,18 +99,21 @@ namespace FrontierDispatch.Core
             {
                 int leftChild = GetLeftChild(index);
                 int rightChild = GetRightChild(index);
-
+                
+               
                 if (leftChild >= _heap.Count) //If left child is higher than the last index of the hierarchy
                 {
                     return; 
                 }
-                
-                
 
+                int smallestChild = leftChild;
                 if(rightChild < _heap.Count && _heap[rightChild].Priority < _heap[leftChild].Priority)
                 {
-                    
+                    smallestChild = rightChild;
                 }
+
+                index = smallestChild;
+                
             }
         }
 
